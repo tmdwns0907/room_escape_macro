@@ -75,15 +75,25 @@ notifier.py
 예약 가능 여부 등의 결과를 사용자에게 알리는 기능을 담당합니다.
 
 Configuration
+
 config.py
+
 DATE = "2026-10-10"
+
 THEME_NAME = "꼬치 진다"
+
 START_TIME = "1400"
+
 END_TIME = "1700"
+
 PLAYER = 4
+
 config_local.py
+
 NAME = "홍길동"
+
 PHONE_NUMBER = "1012345678"
+
 EMAIL = "example@email.com"
 
 config_local.py는 .gitignore에 등록하여 Git에 업로드하지 않습니다.
