@@ -1,189 +1,156 @@
-Room Escape Reservation Macro
+# Room Escape Macro
 
 방탈출 예약 사이트의 예약 과정을 자동화하기 위한 Python 프로젝트입니다.
 
-Playwright를 이용하여 방탈출 사이트에 접속하고, 원하는 날짜와 테마의 예약 가능 시간을 확인한 뒤 예약 정보를 입력하여 예약하는 기능을 구현합니다.
+현재는 `showroom404.com`을 대상으로 개발하고 있으며, 향후 여러 방탈출 예약 사이트를 지원하는 것을 목표로 합니다.
 
-Features
-예약 사이트 접속
-원하는 날짜 선택
-테마 선택 및 검색
-예약 가능 시간 조회
-원하는 시간대 필터링
-예약자 정보 입력
-예약 인원 선택
-이용약관 동의
-예약 진행
-예약 가능한 시간이 없을 경우 주기적으로 확인하는 기능 (개발 예정)
-여러 방탈출 사이트 지원 (개발 예정)
-Tech Stack
-Python
-Playwright
-Git / GitHub
-Project Structure
+## Features
 
+* 브라우저 자동 실행
+* 방탈출 예약 페이지 접속
+* 예약 날짜 선택
+* 테마별 예약 가능 시간 조회
+* 원하는 시간대 검색
+* 예약자 정보 입력
+* 인원 수 선택
+* 이용약관 동의
+* 예약 실행
+* 예약 가능한 시간이 없을 경우 주기적인 재조회
+* 예약 가능 시간 발견 시 자동 예약
+* 예약 결과 알림
+
+> 현재 일부 기능은 개발 중입니다.
+
+## Tech Stack
+
+* Python
+* Playwright
+* Git / GitHub
+
+## Project Structure
+
+```text
 room_escape_macro/
-
-
 ├── main.py
-
 ├── config.py
-
 ├── config_local.py
-
+├── config_local_example.py
 ├── browser.py
-
 ├── reservation.py
-
 ├── notifier.py
-
 ├── .gitignore
-
 └── README.md
+```
 
-주요 파일
-main.py
+### 주요 파일
 
-프로그램의 전체 실행 흐름을 관리합니다.
+| 파일                        | 설명                      |
+| ------------------------- | ----------------------- |
+| `main.py`                 | 프로그램 실행 및 전체 흐름 관리      |
+| `config.py`               | 프로그램의 기본 설정             |
+| `config_local.py`         | 개인 정보 및 로컬 설정           |
+| `config_local_example.py` | 로컬 설정 파일 예시             |
+| `browser.py`              | Playwright 브라우저 생성 및 관리 |
+| `reservation.py`          | 방탈출 예약 사이트 동작 처리        |
+| `notifier.py`             | 예약 결과 및 알림 처리           |
 
-reservation.py
+## Installation
 
-방탈출 예약 사이트의 페이지 조작 및 예약 기능을 담당합니다.
+### 1. Repository Clone
 
-날짜 선택
-예약 가능 시간 검색
-예약 정보 입력
-인원 선택
-약관 동의
-예약 진행
-browser.py
+```bash
+git clone https://github.com/tmdwns0907/room_escape_macro.git
+cd room_escape_macro
+```
 
-Playwright 브라우저의 생성 및 초기 설정을 담당합니다.
+### 2. Virtual Environment
 
-config.py
+Windows:
 
-예약 날짜, 테마, 시간대 등 Git에 공유해도 되는 설정을 관리합니다.
-
-config_local.py
-
-이름, 전화번호, 이메일 등 개인 정보를 관리합니다.
-
-config_local.py는 개인정보 보호를 위해 Git에 포함하지 않습니다.
-
-notifier.py
-
-예약 가능 여부 등의 결과를 사용자에게 알리는 기능을 담당합니다.
-
-Configuration
-
-config.py
-
-DATE = "2026-10-10"
-
-THEME_NAME = "꼬치 진다"
-
-START_TIME = "1400"
-
-END_TIME = "1700"
-
-PLAYER = 4
-
-config_local.py
-
-NAME = "홍길동"
-
-PHONE_NUMBER = "1012345678"
-
-EMAIL = "example@email.com"
-
-config_local.py는 .gitignore에 등록하여 Git에 업로드하지 않습니다.
-
-Installation
-
-Python 가상환경을 생성한 후 필요한 패키지를 설치합니다.
-
+```bash
 python -m venv .venv
+.venv\Scripts\activate
+```
 
-가상환경을 활성화합니다.
+### 3. Install Dependencies
 
-Windows PowerShell:
-
-.venv\Scripts\Activate.ps1
-
-Playwright를 설치합니다.
-
+```bash
 pip install playwright
+```
 
-필요한 브라우저를 설치합니다.
+### 4. Install Browser
 
+```bash
 playwright install
-Usage
+```
 
-설정을 완료한 후 다음 명령으로 실행합니다.
+## Configuration
 
+개인 정보는 GitHub에 업로드하지 않도록 별도의 로컬 설정 파일을 사용합니다.
+
+`config_local_example.py`를 복사하여 `config_local.py`를 생성합니다.
+
+`config_local_example.py` → `config_local.py`
+
+`config_local.py`에 개인 정보를 입력합니다.
+
+```python
+NAME = "홍길동"
+PHONE_NUMBER = "10-0000-0000"
+EMAIL = "example@example.com"
+```
+
+`config_local.py`는 `.gitignore`에 등록되어 있으므로 GitHub에 업로드하지 않습니다.
+
+## Usage
+
+설정을 완료한 후 다음 명령어로 프로그램을 실행합니다.
+
+```bash
 python main.py
+```
 
-프로그램은 설정된 날짜와 테마를 기준으로 예약 가능 시간을 확인하고 예약 과정을 진행합니다.
+프로그램이 실행되면 Playwright를 통해 Chrome 브라우저가 실행되고 예약 페이지에 접속합니다.
 
-Supported Sites
+## Supported Sites
 
-현재:
+현재 지원하는 사이트:
 
-Showroom404
+* Showroom404
 
-지원 예정:
+향후 다른 방탈출 예약 사이트도 추가할 예정입니다.
 
-추가 방탈출 예약 사이트
+## Development Roadmap
 
-사이트마다 HTML 구조와 예약 방식이 다르기 때문에 사이트별 예약 객체를 분리하여 구현할 예정입니다.
+* [x] 브라우저 자동 실행
+* [x] 예약 페이지 접속
+* [x] 날짜 선택
+* [x] 테마별 시간 조회
+* [x] 원하는 시간대 검색
+* [x] 예약자 정보 입력
+* [x] 인원 수 선택
+* [x] 이용약관 동의
+* [x] 예약 실행
+* [ ] 예약 가능 여부 주기적 확인
+* [ ] 예약 가능 시간 발견 시 자동 예약
+* [ ] 예약 성공 / 실패 처리
+* [ ] 예약 결과 알림
+* [ ] 여러 방탈출 사이트 지원
 
-Development Roadmap
-Completed
+## Security
 
-Playwright 기반 브라우저 자동화
+개인 정보 및 민감한 설정은 `config_local.py`에 저장합니다.
 
-날짜 선택
+`config_local.py`는 GitHub에 업로드하지 않으며 `.gitignore`에 등록해야 합니다.
 
-테마 조회
-
-예약 가능 시간 검색
-
-시간대 필터링
-
-예약자 정보 입력
-
-예약 인원 선택
-
-약관 동의
-
-예약 실행
-
-TODO
-
-예약 가능한 시간이 없을 경우 반복 조회
-
-예약 가능 시간 발견 시 자동 예약
-
-예약 실패 및 예외 처리
-
-예약 결과 알림 개선
-
-여러 방탈출 사이트 지원
-
-사이트별 예약 로직 분리 및 공통 인터페이스 설계
-
-Security
-
-개인정보 및 민감한 설정은 Git 저장소에 업로드하지 않습니다.
-
-다음 파일은 .gitignore에 포함되어야 합니다.
-
+```gitignore
 config_local.py
+```
 
-GitHub에 업로드하기 전에 개인정보가 포함된 파일이 commit 대상에 포함되어 있지 않은지 확인합니다.
+실제 개인정보가 포함된 설정 파일을 GitHub에 커밋하지 않도록 주의하세요.
 
-Disclaimer
+## Disclaimer
 
-본 프로젝트는 개인적인 학습 및 자동화 구현을 목적으로 개발되었습니다.
+이 프로젝트는 개인적인 학습 및 자동화 구현을 목적으로 개발되었습니다.
 
-각 예약 사이트의 이용약관 및 자동화 정책을 확인하고 적절하게 사용해야 합니다.
+예약 사이트의 이용약관 및 자동화 정책을 확인하고 적절한 범위에서 사용해야 합니다.
