@@ -47,7 +47,8 @@ def main():
         reservation.fill_reservation_form(
             config_local.NAME,
             config_local.PHONE_NUMBER,
-            config_local.EMAIL
+            config_local.EMAIL,
+            config.PLAYER
         )
     '''
     sleep_time = 2  # 2초 대기
