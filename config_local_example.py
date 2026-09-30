@@ -1,0 +1,3 @@
+NAME = "홍길동"
+PHONE_NUMBER = "1012345678"
+EMAIL = ""
