@@ -21,15 +21,26 @@ Python
 Playwright
 Git / GitHub
 Project Structure
+
 room_escape_macro/
+
+
 ├── main.py
+
 ├── config.py
+
 ├── config_local.py
+
 ├── browser.py
+
 ├── reservation.py
+
 ├── notifier.py
+
 ├── .gitignore
+
 └── README.md
+
 주요 파일
 main.py
 
