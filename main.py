@@ -5,6 +5,7 @@ from datetime import datetime
 
 import time
 import config
+import config_local
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
@@ -33,12 +34,21 @@ def main():
     reservation.open()
 
     reservation.select_date(config.DATE)
+    #reservation.select_theme(config.THEME_NAME)
 
-    result = reservation.check_time(config.TARGET_TIME)
+    #result = reservation.check_time(config.TARGET_TIME)
+    result = reservation.search_time(config.THEME_NAME, config.START_TIME, config.END_TIME)
 
     for item in result:
         print(item)
 
+    flag = reservation.click_reservation(config.THEME_NAME, result[0]["time"])
+    if flag:
+        reservation.fill_reservation_form(
+            config_local.NAME,
+            config_local.PHONE_NUMBER,
+            config_local.EMAIL
+        )
     '''
     sleep_time = 2  # 2초 대기
     while(True):
@@ -55,10 +65,10 @@ def main():
         reservation.refresh()
     '''
 
-    """input("예매 과정을 확인한 후 Enter를 누르세요.")
+    input("예매 과정을 확인한 후 Enter를 누르세요.")
 
     browser.close()
-    playwright.stop()"""
+    playwright.stop()
 
 
 if __name__ == "__main__":
