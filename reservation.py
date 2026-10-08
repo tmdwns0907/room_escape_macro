@@ -134,7 +134,7 @@ class Reservation:
         slot.click()
         return True
 
-    def fill_reservation_form(self, name, phone_number, email):
+    def fill_reservation_form(self, name, phone_number, email, player):
         self.page.locator("#player_name").fill(name)
 
         phone = self.page.locator("#phone")
@@ -150,7 +150,7 @@ class Reservation:
         dropdown.locator(".select-styled").click()
         dropdown.locator(
             ".select-options li",
-            has_text="4 명"
+            has_text=player
         ).click()
 
         self.page.locator("#default-checkbox-checked").check()
